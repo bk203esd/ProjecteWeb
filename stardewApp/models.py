@@ -21,8 +21,8 @@ class Location(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=20)
     category = models.CharField(max_length=20)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='location')
-    season = models.ForeignKey(Season, on_delete=models.CASCADE, related_name='season')
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -41,9 +41,9 @@ class Villager(models.Model):
 class Schedule(models.Model):
     day_of_week = models.CharField(max_length=20)
     hour = models.CharField(max_length=20)
-    season = models.ForeignKey(Season, on_delete=models.CASCADE, related_name='season')
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
     villager = models.ForeignKey(Villager, on_delete=models.CASCADE, related_name='villager')
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='location')
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.day_of_week
