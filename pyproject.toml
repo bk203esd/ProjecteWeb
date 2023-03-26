@@ -2,7 +2,8 @@
 name = "ProjecteWeb - Stardew Valley"
 version = "0.1.0"
 description = "Projecte web de Stardew Valley"
-authors = ["Antonio López Gomez <antoniolopez18022002@gmail.com>",
+authors = [
+    "Antonio López Gomez <antoniolopez18022002@gmail.com>",
     "David Mas Martinez <david.masmartinez@gmail.com>",
     "Laura Haro Escoi <lauraha.escoi@gmail.com>",
     "Jonàs Salat Torres <jsalattorres@gmail.com>",
