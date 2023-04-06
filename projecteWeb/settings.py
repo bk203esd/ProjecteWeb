@@ -12,32 +12,23 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
-import environ
+# import environ
 import os
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print("base: " + str(BASE_DIR))
-BASE_DIR_ENV = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print("env: " + str(BASE_DIR_ENV))
-
-environ.Env.read_env(os.path.join(BASE_DIR_ENV, '../ProjecteWeb/.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.environ['SECRET_KEY']
 SECRET_KEY = 'django-insecure-&hqb0)kug-zpw3^jqh!l-oe*evbj8!j9=cj9jb(3s@^(-h#au)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -66,8 +57,7 @@ ROOT_URLCONF = 'projecteWeb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,12 +77,12 @@ WSGI_APPLICATION = 'projecteWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env('ENGINE'),
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': int(env('PORT')),
+        'ENGINE': os.environ['ENGINE'],
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'HOST': os.environ['HOST'],
+        'PORT': int(os.environ['PORT']),
     }
 }
 
@@ -128,18 +118,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = env('STATIC_URL')
+STATIC_URL = os.environ['STATIC_URL']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-#
-# SECRET_KEY = env('SECRET_KEY')
-# DEBUG = env.bool('DEBUG', default=False)
-#
-# ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-# DATABASES = {
-#     'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')
-# }
