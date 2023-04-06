@@ -19,7 +19,7 @@ RUN pip install --upgrade pip
 RUN pip install "poetry==$POETRY_VERSION"
 
 RUN poetry config virtualenvs.create false
-RUN poetry install --no-dev
+RUN poetry install #--no-dev
 
 # Copia los archivos de la aplicación
 COPY . .
@@ -28,5 +28,7 @@ COPY . .
 # Instala las dependencias de Python usando Poetry
 
 # Define el comando para ejecutar la aplicación
+CMD ["python", "manage.py", "makemigrations"]
+CMD ["python", "manage.py", "migrate"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
