@@ -30,5 +30,6 @@ COPY . .
 # Define el comando para ejecutar la aplicación
 CMD ["python", "manage.py", "makemigrations"]
 CMD ["python", "manage.py", "migrate"]
+CMD ["python", "manage.py", "createsuperuser2", "--username","root", "--password","root", "--noinput", "--email", "'root@root.com'"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
