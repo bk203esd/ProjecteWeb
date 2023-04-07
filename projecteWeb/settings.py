@@ -75,7 +75,14 @@ WSGI_APPLICATION = 'projecteWeb.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': os.getenv('DATABASE_URL')
+    'default': {
+        'ENGINE': os.environ['ENGINE'],
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'HOST': os.environ['HOST'],
+        'PORT': int(os.environ['PORT']),
+    }
 }
 
 # Password validation
