@@ -14,15 +14,12 @@ allows you to view the wiki offline.
 - [git](https://git-scm.com/downloads)
 - [poetry](https://python-poetry.org/docs/#installation)
 - [django](https://www.djangoproject.com/download/)
-
-### Installation Commands
-
-- Run `sudo apt install python3 python3-pip git`
-- Run `sudo apt install python3-poetry`
-- Run `sudo apt install python3-django`
+- [docker](https://docs.docker.com/get-docker/)
+- [flyctl](https://fly.io/docs/getting-started/installing-flyctl/)
 
 ### Steps
 
+#### Deploy en local
 1. Clone the repository
 2. Navigate to the directory
 3. Run `poetry install`
@@ -32,3 +29,14 @@ allows you to view the wiki offline.
 7. Enjoy!
 8. To exit the virtual environment, run `exit`
 9. To re-enter the virtual environment, run `poetry shell`
+
+#### Deploy en docker
+1. Clone the repository
+2. Navigate to the directory
+3. Run `docker-compose up -d`
+4. Navigate to `localhost:8000` in your browser
+5. Enjoy!
+6. To stop the docker container, run `docker-compose down`
+7. To re-start the docker container, run `docker-compose up -d`
+8. To re-build the docker container, run `docker-compose up -d --build`
+9. To re-build the docker container without using cache, run `docker-compose up -d --build --no-cache`
