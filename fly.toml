@@ -1,4 +1,4 @@
-# fly.toml file generated for stardew-arasiquesi on 2023-04-07T15:34:52+02:00
+# fly.toml file generated for stardew-app on 2023-04-07T15:34:52+02:00
 
 app = "stardew-app"
 kill_signal = "SIGINT"
