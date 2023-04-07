@@ -1,0 +1,32 @@
+Deployment proposal:
+
+Our application will be a 3-layer project:
+- Web Layer
+- Application Layer
+- Database Layer
+
+We will not have a Session Storage Layer because it is not necessary in our project as we will not be working with session storage.
+
+Number of servers and role of each one:
+We will have, at least 3 servers. These servers will be each for one of the layers. The number of servers, however, can be increased to increase the performance and scalability of the application.
+The roles of each server will be the following:
+
+1. Web Layer Server: This server will be running NGINX and managing incoming traffic.
+
+2. Application Layer Server: This server will be running Django and managing the application’s logic.
+
+3. Database Layer Server: This server will be running PostgreSQL, storing all the data the application needs.
+
+Connections and dependencies between servers:
+1. Web - Application: These two servers will be connected through HTTP requests.
+2. Application - Database: These two servers will be connected through psycopg2.
+3. This means that, indirectly, the web server will be connected to the database via the application, thus creating a dependency between the Web Server and the Application Server.
+
+
+Required servers:
+We require 3 servers. These are a single server for each of the layers. The role of each server has been defined above. We would require a 4th server if we had considered a Session Storage Layer.
+
+Optional servers:
+We may have multiple optional servers for each of the layers. In each of the cases, they will be increasing the layer’s performance and scalability.
+
+Authors: Laura Haro Escoi, Antonio López Gómez, David Mas Martínez, Guillem Mora Bea, Jonàs Salat Torres
