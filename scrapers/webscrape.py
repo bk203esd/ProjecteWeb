@@ -1,14 +1,22 @@
 import urllib3
 import bs4
 
+class Villager():
+    def __init__(self, name = "", birthday = "", love = [], like = []) -> None:
+        self.name = name
+        self.birthday = birthday
+        self.love = love
+        self.like = like
+
+
 class WebScrape(object):
     def __init__(self) -> None:
-        self.url = "https://stardewvalleywiki.com/Villagers"
+        self.url = "https://stardewvalleywiki.com"
     
-    def get_web(self):
+    def get_web(self, sufix):
         httppool = urllib3.PoolManager()
 
-        resposta = httppool.request("GET", self.url)
+        resposta = httppool.request("GET", self.url + sufix)
 
         self.html = resposta.data.decode("utf-8")
 
@@ -31,11 +39,14 @@ class WebScrape(object):
         self.extract_data()
 
     def get_data(self):
-        self.get_web()
+        self.get_web('/Villagers')
         self.parse_html()
         return self.data
     
 if __name__ == "__main__":
     client = WebScrape()
+    villagers = {}
     dades= client.get_data()
+    for villager in dades:
+        villagers[villager] = Villager(name=villager)
     print(dades)
