@@ -18,6 +18,7 @@ psycopg2-binary = "^2.9.6"
 django-environ = "^0.10.0"
 urllib3 = "^1.26.15"
 bs4 = "^0.0.1"
+djangorestframework = "^3.14.0"
 
 [tool.poetry.dev-dependencies]
 
