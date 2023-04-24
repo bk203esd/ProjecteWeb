@@ -32,10 +32,19 @@ class WebScrape(object):
 
     def parse_villager_bs4(self):
         soup = bs4.BeautifulSoup(self.html, features = 'html.parser')
-        div_like = soup.find_all('table', attrs={'class':'wikitable roundedborder'})[0]
-        print(div_like)
-        
+        div_like = soup.find_all('table', attrs={'class':'wikitable roundedborder'})[0:2]
+        for ref in div_like[0]:
+            lines = ref.find_all_next('tr')[2:]
+            for line in lines:
+                like = line.find_all_next('td')[1].get('title')
+                print(like)
 
+        self.data = {}
+        self.data['like'] = []
+        self.data['love'] = []
+        self.data['birthday'] = ''
+        print(tr)
+        
     def extract_data(self):
         self.data = self.data
 
@@ -51,11 +60,12 @@ class WebScrape(object):
         self.get_web('/Villagers')
         self.parse_html()
         return self.data
+
     def get_villager_data(self, villager):
         self.get_web(f'/{villager}')
         self.parse_villager_html()
         return self.data
-    
+
 def fill_dades(villager):
     client = WebScrape()
     dades = client.get_villager_data(villager)
