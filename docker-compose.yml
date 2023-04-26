@@ -22,7 +22,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./projecteWeb/.env
+      - projecteWeb/.env.docker
 
   nginx:
     image: nginx
