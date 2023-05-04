@@ -14,8 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from stardewApp.views import create_season, create_location, create_item, create_villager, create_schedule, home
 
 urlpatterns = [
+    path('', home(), name='home'),
+
+    # admin site
     path('admin/', admin.site.urls),
+
+    # forms site
+    path('seasons/add/', create_season(), name='seasons_add'),
+    path('locations/add/', create_location(), name='locations_add'),
+    path('items/add/', create_item(), name='items_add'),
+    path('villagers/add/', create_villager(), name='villagers_add'),
+    path('schedules/add/', create_schedule(), name='schedules_add'),
+
+    # account site
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
