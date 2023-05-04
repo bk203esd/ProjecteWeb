@@ -1,5 +1,9 @@
+from django.contrib.auth.models import User
 from django.contrib import admin
 from django.db import models
+
+# Create the root user.
+User.objects.create_superuser('root', 'root@root.com', 'root')
 
 
 # Create your models here.
