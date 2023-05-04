@@ -29,6 +29,14 @@
             <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_schedule' %}">Create
                 Schedule</a></div>
         {% endif %}
+        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'season_list' %}">Seasons</a></div>
+        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'location_list' %}">Locations</a>
+        </div>
+        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'item_list' %}">Items</a></div>
+        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'villager_list' %}">Villagers</a>
+        </div>
+        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'schedule_list' %}">Schedules</a>
+        </div>
     </div>
 </nav>
 {% block content %}
