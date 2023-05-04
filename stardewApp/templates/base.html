@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Stardew App</title>
+    <link rel="stylesheet" href="{% static 'w3.css' %}">
+</head>
+<body>
+<nav class="w3-center">
+    <div class="w3-bar">
+        {% if user.is_authenticated %}
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'logout' %}">Logout</a>
+            </div>
+        {% else %}
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'home' %}">Home</a></div>
+        {% if user.is_authenticated %}
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_season' %}">Create
+                Season</a></div>
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_location' %}">Create
+                Location</a></div>
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_item' %}">Create
+                Item</a></div>
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_villager' %}">Create
+                Villager</a></div>
+            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_schedule' %}">Create
+                Schedule</a></div>
+        {% endif %}
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>
