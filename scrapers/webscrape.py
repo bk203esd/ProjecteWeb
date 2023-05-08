@@ -1,5 +1,6 @@
 import urllib3
 import bs4
+import re
 
 class Villager():
     def __init__(self, name = "", birthday = "", love = [], like = []) -> None:
@@ -7,6 +8,9 @@ class Villager():
         self.birthday = birthday
         self.love = love
         self.like = like
+
+    def print(self):
+        print(f'Villager: {self.name}, \n\tBirthdate: {self.birthday}\n\tLoves: {self.love}\n\tLikes: {self.like}')
 
 
 class WebScrape(object):
@@ -24,27 +28,40 @@ class WebScrape(object):
         soup = bs4.BeautifulSoup(self.html, features = "html.parser")
         #print(soup)
         div_main = soup.find_all('div', attrs={'class':'gallerytext'})
-        #self.data = div_main.find_all('title')
         self.data = []
         for ref in div_main:
             villager = ref.find('a').get('title')
             self.data.append(villager)
 
     def parse_villager_bs4(self):
+        regex = re.compile('.*wikitable.*roundedborder.*')
         soup = bs4.BeautifulSoup(self.html, features = 'html.parser')
-        div_like = soup.find_all('table', attrs={'class':'wikitable roundedborder'})[0:2]
-        for ref in div_like[0]:
-            lines = ref.find_all_next('tr')[2:]
-            for line in lines:
-                like = line.find_all_next('td')[1].get('title')
-                print(like)
+        div_love = soup.find_all('table', attrs={'class':regex})[0]
+        lines = []
+        love = []
+
+        lines.extend(div_love.find_all('tr')[2:])
+        for line in lines:
+            love.extend(line.find_all('a')[1])
+
+        div_like = soup.find_all('table', attrs={'class':regex})[1]
+        lines = []
+        like = []
+
+        lines.extend(div_like.find_all('tr')[2:])
+
+        for line in lines:
+            like.extend(line.find_all('a')[1])
+
+        div_main = soup.find_all('td', attrs={'id':'infoboxdetail'})[0]
+
+        birthDate = div_main.find('a').get('title')
 
         self.data = {}
-        self.data['like'] = []
-        self.data['love'] = []
-        self.data['birthday'] = ''
-        print(tr)
-        
+        self.data['like'] = like
+        self.data['love'] = love
+        self.data['birthday'] = birthDate
+
     def extract_data(self):
         self.data = self.data
 
@@ -69,14 +86,20 @@ class WebScrape(object):
 def fill_dades(villager):
     client = WebScrape()
     dades = client.get_villager_data(villager)
+    villagers[villager].name = villager
+    villagers[villager].birthday = dades['birthday']
+    villagers[villager].love = dades['love']
+    villagers[villager].like = dades['like']
     
 if __name__ == "__main__":
     client = WebScrape()
     villagers = {}
     dades= client.get_names_data()
+    print(dades)
     for villager in dades:
         villagers[villager] = Villager(name=villager)
+
     for villager in villagers:
         print(villager)
         fill_dades(villager)
-    print(dades)
+        villagers[villager].print()
