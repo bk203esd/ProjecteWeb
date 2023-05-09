@@ -66,8 +66,6 @@ def parseWeakSchedule(name, day):
 """ Used for all villagers
     ->checks for a good constructed schedule (with tables)
     ->checks for a lazy one (just text) or non scheduled villagers"""
-
-
 def parseSchedule(soup):
     dailySchedule.clear()
     fullParsedSchedule.clear()
