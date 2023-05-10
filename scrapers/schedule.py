@@ -70,9 +70,8 @@ def parseSchedule(soup):
     dailySchedule.clear()
     fullParsedSchedule.clear()
     """ First we try to get the table info """
-    # Get all seasons (but with extra undesired tables)
     numTables = soup.find_all('table', attrs={'class': 'mw-collapsible'})
-    # For every table
+
     for day in numTables:
         # Try to get the name of the "season"
         name = day.find('span', attrs={'style': 'display:inline; margin-right:0;'})
@@ -96,18 +95,18 @@ def parseSchedule(soup):
                 """
                 parseWeakSchedule(name, day)
 
+    """ After checking for well constructed schedules, we check if the villager should have one """
     scheduled = soup.find('span', attrs={'id': 'Schedule', 'class': 'mw-headline'})
-    if scheduled is None:  # If they don't have a schedule, this message "is" their schedule
-        print("[N] - I'm a NOTSchedule")
+    if scheduled is None:
+        # If they shouldn't have a schedule, this message "is" their schedule
         fullParsedSchedule.append("I'm sorry, this person doesn't have a schedule")
-    elif len(fullParsedSchedule) == 0:  # if it hasn't been setup already, their schedule is text based
-        """
-        Since we know that we're parsing a text Schedule: 
-            parsedSchedule will contain: ['schedule']
+    elif len(fullParsedSchedule) == 0:
+        """ If it hasn't been setup already, their schedule is text based
+            Since we know that we're parsing a text Schedule: 
+                parsedSchedule will contain: ['schedule']
         """
         name = soup.find('span', attrs={'id': 'Schedule', 'class': 'mw-headline'})
-        print("[T] - I'm a textSchedule")
-        fullParsedSchedule.append(name.find_next('p').text)
+        fullParsedSchedule.append(name.find_next('p').text.split('\n')[0])
 
 
 class ScrapSchedule(object):
