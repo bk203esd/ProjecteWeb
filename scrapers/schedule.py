@@ -11,8 +11,6 @@ dailySchedule = []
 fullParsedSchedule = []
 
 """ Used for villagers whose schedule depends on the season """
-
-
 def parseFullSchedule(name, day):
     # Get actual season name
     name = name.text.split('\xa0')
@@ -46,8 +44,6 @@ def parseFullSchedule(name, day):
 
 
 """ Used for villagers whose schedule depends only on the day """
-
-
 def parseWeakSchedule(name, day):
     # Type of the day (Raining, Monday, ...)
     name = name.text.split('\n')[0]
