@@ -34,7 +34,7 @@ class WebScrape(object):
             self.data.append(villager)
 
     def parse_villager_bs4(self):
-        regex = re.compile('.*wikitable.*roundedborder.*')
+        regex = re.compile('^(?=.*wikitable)(?=.*roundedborder)(?!.*mw-made-collapsible)(?!.*mw-collapsible).*')
         soup = bs4.BeautifulSoup(self.html, features = 'html.parser')
         div_love = soup.find_all('table', attrs={'class':regex})[0]
         lines = []
@@ -96,8 +96,10 @@ if __name__ == "__main__":
     villagers = {}
     dades= client.get_names_data()
     print(dades)
-    for villager in dades:
-        villagers[villager] = Villager(name=villager)
+    for index, villager in enumerate(dades):
+        if villager != 'Krobus':
+            villagers[villager] = Villager(name=villager)
+        if index > 32: break
 
     for villager in villagers:
         print(villager)
