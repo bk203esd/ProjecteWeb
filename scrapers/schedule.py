@@ -122,10 +122,9 @@ class ScrapSchedule(object):
         # regex = re.compile(".*wikitable.*")
         soup = bs4.BeautifulSoup(self.html, features="html.parser")
         parseSchedule(soup)
-        self.data = fullParsedSchedule
 
     def extract_data(self):
-        self.data = self.data
+        self.data = fullParsedSchedule
 
     def parse_html(self):
         self.parse_bs4()
@@ -152,4 +151,4 @@ if __name__ == "__main__":  # for testing purposes
         vill.name = i
         print("Villager: " + i)
         dades = client.get_data(vill)
-        print(dades)
+        print(client.data)
