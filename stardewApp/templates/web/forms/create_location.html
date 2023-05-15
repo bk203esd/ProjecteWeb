@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "web/base.html" %}
 {% block content %}
     <form method="post" action="{% url "locations_add" %}">
         {% csrf_token %}

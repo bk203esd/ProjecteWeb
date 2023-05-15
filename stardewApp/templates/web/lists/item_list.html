@@ -1,14 +1,14 @@
-{% extends "base.html" %}
+{% extends "web/base.html" %}
 {% block content %}
-    <h1>VILLAGER LIST</h1>
+    <h1>ITEM LIST</h1>
     <div class="w3-container w3-center">
-        {% for villager in villagers %}
+        {% for item in items %}
             <div class="w3-light-gray w3-topbar w3-bottombar w3-leftbar and w3-rightbar w3-border-black w3-round-large w3-section">
                 <div class="w3-xlarge">
-                    {#                    <a href="{% url 'villager_detail' villager.id %}">{{ villager.name }}</a>#}
+                    {#                    <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a>#}
                 </div>
                 <div class="w3-large">
-                    <div>{{ villager.name }}</div>
+                    <div>{{ item.name }}</div>
                 </div>
             </div>
         {% endfor %}
