@@ -24,6 +24,7 @@ env = environ.Env(
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR_ENV = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Enviroment in docker or local
 # environ.Env.read_env(os.path.join(BASE_DIR_ENV, 'projecteWeb/.env.docker'))
 environ.Env.read_env(os.path.join(BASE_DIR_ENV, 'projecteWeb/.env.local'))
 
