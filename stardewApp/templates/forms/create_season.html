@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post">
+    <form method="post" action="{% url "seasons_add" %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit"/>
+        <div class="form-group">
+            <label for="season_name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Spring" , name="name">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}
