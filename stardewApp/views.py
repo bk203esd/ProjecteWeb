@@ -15,12 +15,12 @@ def create_season(request):
             return redirect('home')
     else:
         form = SeasonForm()
-    return render(request, '../templates/forms/create_season.html', {'form': form})
+    return render(request, '../templates/web/forms/create_season.html', {'form': form})
 
 
 class seasonListView(ListView):
     model = Season
-    template_name = 'lists/season_list.html'
+    template_name = 'web/lists/season_list.html'
     context_object_name = 'seasons'
 
 
@@ -33,12 +33,12 @@ def create_location(request):
             return redirect('home')
     else:
         form = LocationForm()
-    return render(request, '../templates/forms/create_location.html', {'form': form})
+    return render(request, '../templates/web/forms/create_location.html', {'form': form})
 
 
 class locationListView(ListView):
     model = Location
-    template_name = 'lists/location_list.html'
+    template_name = 'web/lists/location_list.html'
     context_object_name = 'locations'
 
 
@@ -51,12 +51,12 @@ def create_item(request):
             return redirect('home')
     else:
         form = ItemForm()
-    return render(request, '../templates/forms/create_item.html', {'form': form})
+    return render(request, '../templates/web/forms/create_item.html', {'form': form})
 
 
 class itemListView(ListView):
     model = Item
-    template_name = 'lists/item_list.html'
+    template_name = 'web/lists/item_list.html'
     context_object_name = 'items'
 
 
@@ -69,12 +69,12 @@ def create_villager(request):
             return redirect('home')
     else:
         form = VillagerForm()
-    return render(request, '../templates/forms/create_villager.html', {'form': form})
+    return render(request, '../templates/web/forms/create_villager.html', {'form': form})
 
 
 class villagerListView(ListView):
     model = Villager
-    template_name = 'lists/villager_list.html'
+    template_name = 'web/lists/villager_list.html'
     context_object_name = 'villagers'
 
 
@@ -87,14 +87,14 @@ def create_schedule(request):
             return redirect('home')
     else:
         form = ScheduleForm()
-    return render(request, '../templates/forms/create_schedule.html', {'form': form})
+    return render(request, '../templates/web/forms/create_schedule.html', {'form': form})
 
 
 class scheduleLisTView(ListView):
     model = Schedule
-    template_name = 'lists/schedule_list.html'
+    template_name = 'web/lists/schedule_list.html'
     context_object_name = 'schedules'
 
 
 def home(request):
-    return render(request, '../templates/home.html')
+    return render(request, '../templates/web/home.html')
