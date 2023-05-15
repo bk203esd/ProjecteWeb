@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>VILLAGER LIST</h1>
+    <div class="w3-container w3-center">
+        {% for villager in villagers %}
+            <div class="w3-light-gray w3-topbar w3-bottombar w3-leftbar and w3-rightbar w3-border-black w3-round-large w3-section">
+                <div class="w3-xlarge">
+                    {#                    <a href="{% url 'villager_detail' villager.id %}">{{ villager.name }}</a>#}
+                </div>
+                <div class="w3-large">
+                    <div>{{ villager.name }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

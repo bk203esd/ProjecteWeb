@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.contrib import admin
 from django.db import models
 
@@ -67,3 +68,7 @@ class VillagerAdmin(admin.ModelAdmin):
 
 class ScheduleAdmin(admin.ModelAdmin):
     list_display = ('day_of_week', 'hour', 'season', 'villager', 'location')
+
+
+# Create the root user.
+# User.objects.create_superuser('root', 'root@root.com', 'root')
