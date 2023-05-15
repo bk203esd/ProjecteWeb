@@ -1,6 +1,13 @@
 import urllib3
 import bs4
 import re
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projecteWeb.settings')
+
+import django
+django.setup()
+from stardewApp.models import Villager
+
 
 class Villager():
     def __init__(self, name = "", birthday = "", love = [], like = []) -> None:
@@ -86,10 +93,12 @@ class WebScrape(object):
 def fill_dades(villager):
     client = WebScrape()
     dades = client.get_villager_data(villager)
-    villagers[villager].name = villager
-    villagers[villager].birthday = dades['birthday']
-    villagers[villager].love = dades['love']
-    villagers[villager].like = dades['like']
+    Villager.objects.create(
+        name=villager,
+        birthday=dades['birthday'],
+        love=','.join(dades['love']),
+        like=','.join(dades['like'])
+    )
     
 if __name__ == "__main__":
     client = WebScrape()
