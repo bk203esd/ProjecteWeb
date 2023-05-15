@@ -1,44 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %} - Stardew App</title>
-    <link rel="stylesheet" href="{% static 'w3.css' %}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Stardew App</title>
+
+    <!-- Bootstrap CSS -->
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+
 </head>
 <body>
-<nav class="w3-center">
-    <div class="w3-bar">
-        {% if user.is_authenticated %}
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'logout' %}">Logout</a>
-            </div>
-        {% else %}
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'login' %}">Login</a>
-            </div>
-        {% endif %}
-        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'home' %}">Home</a></div>
-        {% if user.is_authenticated %}
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_season' %}">Create
-                Season</a></div>
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_location' %}">Create
-                Location</a></div>
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_item' %}">Create
-                Item</a></div>
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_villager' %}">Create
-                Villager</a></div>
-            <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'create_schedule' %}">Create
-                Schedule</a></div>
-        {% endif %}
-        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'season_list' %}">Seasons</a></div>
-        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'location_list' %}">Locations</a>
-        </div>
-        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'item_list' %}">Items</a></div>
-        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'villager_list' %}">Villagers</a>
-        </div>
-        <div class="w3-bar-item w3-green w3-border w3-border-black"><a href="{% url 'schedule_list' %}">Schedules</a>
-        </div>
-    </div>
-</nav>
+{% include "navBar.html" %}
 {% block content %}
 {% endblock %}
 </body>
