@@ -1,4 +1,4 @@
-from scrapers.schedule import ScrapSchedule
+from scrapers.webScraper_schedule import ScrapSchedule
 from stardewApp.models import *
 
 
