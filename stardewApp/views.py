@@ -51,7 +51,10 @@ def create_item(request):
             return redirect('home')
     else:
         form = ItemForm()
-    return render(request, '../templates/web/forms/create_item.html', {'form': form})
+    return render(request, '../templates/web/forms/create_item.html', {'form': form,
+                                                                       'locations': Location.objects.all(),
+                                                                       'seasons': Season.objects.all(),
+                                                                       })
 
 
 class itemListView(ListView):
@@ -69,7 +72,9 @@ def create_villager(request):
             return redirect('home')
     else:
         form = VillagerForm()
-    return render(request, '../templates/web/forms/create_villager.html', {'form': form})
+    return render(request, '../templates/web/forms/create_villager.html', {'form': form,
+                                                                           'items': Item.objects.all()
+                                                                           })
 
 
 class villagerListView(ListView):
@@ -87,7 +92,11 @@ def create_schedule(request):
             return redirect('home')
     else:
         form = ScheduleForm()
-    return render(request, '../templates/web/forms/create_schedule.html', {'form': form})
+    return render(request, '../templates/web/forms/create_schedule.html', {'form': form,
+                                                                           'seasons': Season.objects.all(),
+                                                                           'villagers': Villager.objects.all(),
+                                                                           'locations': Location.objects.all()
+                                                                           })
 
 
 class scheduleLisTView(ListView):
