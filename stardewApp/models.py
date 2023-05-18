@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -36,6 +37,7 @@ class Villager(models.Model):
     # loved_item = models.ManyToManyField(Item, related_name='loved_item')
     liked_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='liked_item')
     # liked_item = models.ManyToManyField(Item, related_name='liked_item')
+    user = User
 
     def __str__(self):
         return self.name
