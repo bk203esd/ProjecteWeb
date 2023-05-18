@@ -1,33 +1,55 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <form method="post" action="{% url "villager_detail" villager.id %}" id="villagerForm">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="villager_name">Name</label>
-            <input type="text" class="form-control" id="villager_name" value="{{ villager.name }}" name="name">
+    {% if user.is_superuser or user.id == villager.user %}
+        <form method="post" action="{% url "villager_detail" villager.id %}" id="villagerForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="villager_name">Name</label>
+                <input type="text" class="form-control" id="villager_name" value="{{ villager.name }}" name="name">
+            </div>
+            <div class="form-group">
+                <label for="villager_birthday">Birthday</label>
+                <input type="text" class="form-control" id="villager_birthday" value="{{ villager.birthday }}"
+                       name="birthday">
+            </div>
+            <div class="form-group">
+                <label for="villager_loved_item">Loved Item</label>
+                <select class="form-control" id="villager_loved_item" name="loved_item" form="villagerForm">
+                    <option value="{{ villager.loved_item }}"></option>
+                    {% for item in items %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="villager_liked_item">Liked Item</label>
+                <select class="form-control" id="villager_liked_item" name="liked_item" form="villagerForm">
+                    <option value="{{ villager.liked_item }}"></option>
+                    {% for item in items %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    {% else %}
+        <div method="post" action="{% url "villager_detail" villager.id %}" id="villagerForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <div>Name</div>
+                <div type="text" class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <div for="villager_birthday">Birthday</div>
+                <div type="text" class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <div>Loved Item</div>
+                <div class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <div>Liked Item</div>
+                <div class="form-control"></div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="villager_birthday">Birthday</label>
-            <input type="text" class="form-control" id="villager_birthday" value="{{ villager.birthday }}"
-                   name="birthday">
-        </div>
-        <div class="form-group">
-            <label for="villager_loved_item">Loved Item</label>
-            <select class="form-control" id="villager_loved_item" name="loved_item" form="villagerForm">
-                <option value="{{ villager.loved_item }}"></option>
-                {% for item in items %}
-                    <option value="{{ item.id }}">{{ item.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="villager_liked_item">Liked Item</label>
-            <select class="form-control" id="villager_liked_item" name="liked_item" form="villagerForm">
-                <option value="{{ villager.liked_item }}"></option>
-                {% for item in items %}
-                    <option value="{{ item.id }}">{{ item.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </form>
+    {% endif %}
 {% endblock %}
