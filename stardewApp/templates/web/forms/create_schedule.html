@@ -1,8 +1,23 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <form method="post">
+    <form method="post" action="{% url "schedules_add" %}" id="scheduleForm">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit"/>
+        <div class="form-group">
+            <label for="schedule_day_of_week">Day Of Week</label>
+            <input type="text" class="control-form" id="schedule_day_of_week" placeholder="Potatoe" name="day_of_week">
+        </div>
+        <div class="form-group">
+            <label for="schedule_hour">Hour</label>
+            <input type="text" class="control-form" id="schedule_hour" placeholder="Potatoe" name="hour">
+        </div>
+        <div class="form-group">
+            <label for="schedule_season">Season</label>
+            <select class="form-control" id="schedule_season" name="season" form="scheduleForm">
+                <option value=""></option>
+                {% for season in seasons %}
+                    <option value="{{ season.id }}">{{ season.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </form>
 {% endblock %}
