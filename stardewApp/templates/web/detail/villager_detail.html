@@ -1,6 +1,6 @@
 {% extends "web/base.html" %}
 {% block content %}
-    {% if user.is_superuser or user.id == villager.user %}
+    {% if user.is_superuser or user == villager.user %}
         <form method="post" action="{% url "villager_detail" villager.id %}" id="villagerForm">
             {% csrf_token %}
             <div class="form-group">

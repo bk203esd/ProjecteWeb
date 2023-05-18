@@ -50,6 +50,8 @@ urlpatterns = [
     # account site
     path('accounts/', include('django.contrib.auth.urls')),
 
+    path('accounts/signup/', signup_review, name='signup'),
+
     # login site
     path('api/token/', TokenView.as_view(), name='token'),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
