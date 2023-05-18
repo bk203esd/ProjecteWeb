@@ -113,7 +113,6 @@ def create_villager(request):
     if request.method == 'POST':
         form = VillagerForm(request.POST)
         if form.is_valid():
-            print(form)
             form.save()
             form.user = request.user
             return redirect('home')
