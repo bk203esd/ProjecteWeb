@@ -18,6 +18,9 @@ RUN pip install --upgrade pip
 
 RUN pip install "poetry==$POETRY_VERSION"
 
+RUN pip install behave
+RUN pip install splinter
+
 RUN poetry config virtualenvs.create false
 RUN poetry install
 
