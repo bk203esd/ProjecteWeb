@@ -1,15 +1,19 @@
 {% extends "web/base.html" %}
 {% block content %}
+    <!-- Schedule Form -->
     <form method="post" action="{% url "schedules_add" %}" id="scheduleForm">
         {% csrf_token %}
+        <!-- Day Of Week -->
         <div class="form-group">
             <label for="schedule_day_of_week">Day Of Week</label>
             <input type="text" class="control-form" id="schedule_day_of_week" placeholder="Potatoe" name="day_of_week">
         </div>
+        <!-- Hour -->
         <div class="form-group">
             <label for="schedule_hour">Hour</label>
             <input type="text" class="control-form" id="schedule_hour" placeholder="Potatoe" name="hour">
         </div>
+        <!-- Season -->
         <div class="form-group">
             <label for="schedule_season">Season</label>
             <select class="form-control" id="schedule_season" name="season" form="scheduleForm">
@@ -19,6 +23,7 @@
                 {% endfor %}
             </select>
         </div>
+        <!-- Villager -->
         <div class="form-group">
             <label for="schedule_villager">Villager</label>
             <select class="form-control" id="schedule_villager" name="villager" form="scheduleForm">
@@ -28,6 +33,7 @@
                 {% endfor %}
             </select>
         </div>
+        <!-- Location -->
         <div class="form-group">
             <label for="schedule_location">Location</label>
             <select class="form-control" id="schedule_location" name="location" form="scheduleForm">
@@ -37,5 +43,7 @@
                 {% endfor %}
             </select>
         </div>
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}
