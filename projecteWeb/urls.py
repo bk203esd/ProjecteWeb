@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from oauth2_provider.views import TokenView
 from stardewApp.views import create_season, create_location, create_item, create_villager, create_schedule, home, \
     seasonListView, locationListView, itemListView, villagerListView, scheduleLisTView
 
@@ -40,4 +41,8 @@ urlpatterns = [
 
     # account site
     path('accounts/', include('django.contrib.auth.urls')),
+
+    # login site
+    path('api/token/', TokenView.as_view(), name='token'),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
