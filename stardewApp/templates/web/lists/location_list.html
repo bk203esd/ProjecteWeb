@@ -2,6 +2,7 @@
 {% block content %}
     <h1>LOCATION LIST</h1>
     <div class="w3-container w3-center">
+        <input type="text" class="form-control" id="name" placeholder="Search">
         {% for location in locations %}
             <div class="w3-light-gray w3-topbar w3-bottombar w3-leftbar and w3-rightbar w3-border-black w3-round-large w3-section">
                 <div class="w3-xlarge">
@@ -14,4 +15,13 @@
             </div>
         {% endfor %}
     </div>
+    <script>
+        var locations = [];
+        {% for location in locations %}
+            locations.push("{{ location.name }}")
+        {% endfor %}
+        $(function() {
+            $( "#name" ).autocomplete({source: locations, minLength: 1});
+        });
+    </script>
 {% endblock %}
