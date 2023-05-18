@@ -30,3 +30,6 @@ class ScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
         fields = '__all__'
+
+
+

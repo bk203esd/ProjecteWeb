@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView
 from .forms import *
 from .models import Season, Location, Item, Villager, Schedule
@@ -8,6 +9,8 @@ from .models import Season, Location, Item, Villager, Schedule
 # Create your views here.
 @login_required
 def create_season(request):
+    if not  request.user.is_superuser:
+        return redirect('home')
     if request.method == 'POST':
         form = SeasonForm(request.POST)
         if form.is_valid():
@@ -26,6 +29,8 @@ class seasonListView(ListView):
 
 @login_required
 def create_location(request):
+    if not  request.user.is_superuser:
+        return redirect('home')
     if request.method == 'POST':
         form = LocationForm(request.POST)
         if form.is_valid():
@@ -44,6 +49,8 @@ class locationListView(ListView):
 
 @login_required
 def create_item(request):
+    if not  request.user.is_superuser:
+        return redirect('home')
     if request.method == 'POST':
         form = ItemForm(request.POST)
         if form.is_valid():
@@ -68,6 +75,7 @@ def create_villager(request):
     if request.method == 'POST':
         form = VillagerForm(request.POST)
         if form.is_valid():
+            print(form)
             form.save()
             return redirect('home')
     else:
@@ -107,3 +115,15 @@ class scheduleLisTView(ListView):
 
 def home(request):
     return render(request, '../templates/web/home.html')
+
+
+def signup_review(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # log the user in
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
