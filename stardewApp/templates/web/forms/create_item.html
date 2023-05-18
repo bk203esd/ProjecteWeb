@@ -1,6 +1,6 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <form method="post" action="{% url "items_add" %}">
+    <form method="post" action="{% url "items_add" %}" id="itemForm">
         {% csrf_token %}
         <div class="form-group">
             <label for="item_name">Name</label>
@@ -11,23 +11,21 @@
             <input type="text" class="form-control" id="item_category" placeholder="Vegetable" name="category">
         </div>
         <div class="form-group">
-            <label for="item_location">Example select</label>
-            <select class="form-control" id="item_location" name="location">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <label for="item_location">Location</label>
+            <select class="form-control" id="item_location" name="location" form="itemForm">
+                <option value=""></option>
+                {% for location in locations %}
+                    <option value="{{ location.id }}">{{ location.name }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="form-group">
             <label for="item_season">Example select</label>
-            <select class="form-control" id="item_season" name="season">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-control" id="item_season" name="season" form="itemForm">
+                <option></option>
+                {% for season in seasons %}
+                    <option value="{{ season.id }}">{{ season.name }}</option>
+                {% endfor %}
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

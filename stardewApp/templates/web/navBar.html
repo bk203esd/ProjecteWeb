@@ -25,5 +25,20 @@
                 </li>
             </ul>
         </div>
+
+        <!-- Login/Logout -->
+        <div class="collapse navbar-collapse" id="navbarLog">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "logout" %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "login" %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>

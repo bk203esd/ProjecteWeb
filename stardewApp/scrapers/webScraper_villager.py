@@ -1,7 +1,7 @@
 import urllib3
 import bs4
 import re
-from .models import Villager
+from stardewApp.models import Villager
 
 
 # class Villager():
