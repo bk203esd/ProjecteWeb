@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from oauth2_provider.views import TokenView
 from stardewApp.views import create_season, create_location, create_item, create_villager, create_schedule, home, \
-    seasonListView, locationListView, itemListView, villagerListView, scheduleLisTView, signup_review
+    seasonListView, locationListView, itemListView, villagerListView, scheduleLisTView, season_detail, location_detail, \
+    item_detail, villager_detail, schedule_detail, signup_review
 
 urlpatterns = [
     path('', home, name='home'),
@@ -41,7 +42,6 @@ urlpatterns = [
 
     # account site
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', signup_review, name='signup'),
 
     # login site
     path('api/token/', TokenView.as_view(), name='token'),
