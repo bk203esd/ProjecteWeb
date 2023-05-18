@@ -28,5 +28,12 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="form-group" style="display: none">
+            <label for="villager_user">User:</label>
+            <select class="form-control" id="villager_user" name="user" form="villagerForm">
+                <option value="{{ user.id }}">{{ user.name }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}

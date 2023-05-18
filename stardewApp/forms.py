@@ -24,9 +24,13 @@ class VillagerForm(forms.ModelForm):
     class Meta:
         model = Villager
         fields = '__all__'
+        # exclude = ["user"]
 
 
 class ScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
         fields = '__all__'
+
+
+
