@@ -1,8 +1,32 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <form method="post">
+    <form method="post" action="{% url "villagers_add" %}" id="villagerForm">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit"/>
+        <div class="form-group">
+            <label for="villager_name">Name</label>
+            <input type="text" class="form-control" id="villager_name" placeholder="Potatoe" name="name">
+        </div>
+        <div class="form-group">
+            <label for="villager_birthday">Birthday</label>
+            <input type="text" class="form-control" id="villager_birthday" placeholder="Vegetable" name="birthday">
+        </div>
+        <div class="form-group">
+            <label for="villager_loved_item">Loved Item</label>
+            <select class="form-control" id="villager_loved_item" name="loved_item" form="villagerForm">
+                <option value=""></option>
+                {% for item in items %}
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="villager_liked_item">Liked Item</label>
+            <select class="form-control" id="villager_liked_item" name="liked_item" form="villagerForm">
+                <option value=""></option>
+                {% for item in items %}
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </form>
 {% endblock %}

@@ -1,0 +1,27 @@
+.navbar-custom {
+    background-color: #2196F3; /* azul claro */
+    color: #FFFFFF; /* texto blanco */
+}
+
+.navbar-custom .navbar-toggler-icon {
+    color: #FFFFFF; /* ícono blanco */
+}
+
+.navbar-custom .nav-link.active,
+.navbar-custom .dropdown-item.active {
+    background-color: #1565C0; /* azul oscuro */
+    color: #FFFFFF; /* texto blanco */
+}
+
+.navbar-custom .dropdown-menu {
+    background-color: #2196F3; /* azul claro */
+    border: none; /* eliminar borde */
+}
+
+.navbar-custom .dropdown-item {
+    color: #FFFFFF; /* texto blanco */
+}
+
+.navbar-custom .dropdown-item:hover {
+    background-color: #1565C0; /* azul oscuro */
+}
