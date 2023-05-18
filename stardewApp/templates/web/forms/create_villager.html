@@ -15,7 +15,7 @@
             <select class="form-control" id="villager_loved_item" name="loved_item" form="villagerForm">
                 <option value=""></option>
                 {% for item in items %}
-                    <option value="{{ item }}">{{ item }}</option>
+                    <option value="{{ item.id }}">{{ item.name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -24,7 +24,7 @@
             <select class="form-control" id="villager_liked_item" name="liked_item" form="villagerForm">
                 <option value=""></option>
                 {% for item in items %}
-                    <option value="{{ item }}">{{ item }}</option>
+                    <option value="{{ item.id }}">{{ item.name }}</option>
                 {% endfor %}
             </select>
         </div>
