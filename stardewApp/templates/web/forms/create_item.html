@@ -15,7 +15,7 @@
             <select class="form-control" id="item_location" name="location" form="itemForm">
                 <option value=""></option>
                 {% for location in locations %}
-                    <option value="{{ location }}">{{ location }}</option>
+                    <option value="{{ location.id }}">{{ location.name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -24,7 +24,7 @@
             <select class="form-control" id="item_season" name="season" form="itemForm">
                 <option></option>
                 {% for season in seasons %}
-                    <option value="{{ season }}">{{ season }}</option>
+                    <option value="{{ season.id }}">{{ season.name }}</option>
                 {% endfor %}
             </select>
         </div>
