@@ -1,0 +1,15 @@
+{% extends "web/base.html" %}
+{% block content %}
+    <form method="post" action="{% url "location_detail" location.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="location_name">Name</label>
+            <input type="text" class="form-control" id="name" value="{{ location.name }}" name="name">
+        </div>
+        <div class="form-group">
+            <label for="location_area">Area</label>
+            <input type="text" class="form-control" id="area" value="{{ location.area }}" name="area">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
