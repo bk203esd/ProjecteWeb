@@ -13,7 +13,7 @@
         <div class="form-group">
             <label for="item_location">Location</label>
             <select class="form-control" id="item_location" name="location" form="itemForm">
-                <option></option>
+                <option value=""></option>
                 {% for location in locations %}
                     <option value="{{ location }}">{{ location }}</option>
                 {% endfor %}
