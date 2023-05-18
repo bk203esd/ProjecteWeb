@@ -40,6 +40,13 @@ urlpatterns = [
     path('villagers/', villagerListView.as_view(), name='villager_list'),
     path('schedules/', scheduleLisTView.as_view(), name='schedule_list'),
 
+    # detail site
+    path('seasons/<int:pk>/', season_detail, name='season_detail'),
+    path('locations/<int:pk>/', location_detail, name='location_detail'),
+    path('items/<int:pk>/', item_detail, name='item_detail'),
+    path('villagers/<int:pk>/', villager_detail, name='villager_detail'),
+    path('schedules/<int:pk>/', schedule_detail, name='schedule_detail'),
+
     # account site
     path('accounts/', include('django.contrib.auth.urls')),
 
