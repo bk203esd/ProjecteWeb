@@ -19,5 +19,23 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="form-group">
+            <label for="schedule_villager">Villager</label>
+            <select class="form-control" id="schedule_villager" name="villager" form="scheduleForm">
+                <option value=""></option>
+                {% for villager in villagers %}
+                    <option value="{{ villager.id }}">{{ villager.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="schedule_location">Location</label>
+            <select class="form-control" id="schedule_location" name="location" form="scheduleForm">
+                <option value=""></option>
+                {% for location in locations %}
+                    <option value="{{ location.id }}">{{ location.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </form>
 {% endblock %}
