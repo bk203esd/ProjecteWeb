@@ -25,7 +25,7 @@ class ForageScrape(object):
 
     def parse_items(self):
         forageables = {}
-        name = "a"
+        name = ""
         self.get_web()
         tables = self.soup.select("table:nth-of-type(n+4):nth-of-type(-n+12)")
         num_taula = 0
@@ -85,40 +85,41 @@ class CookingScrape(object):
 
     def parse_items(self):
         Dishes = {}
-        name = "a"
+        name = ""
         self.get_web()
-        tables = self.soup.select("table:nth-of-type(n)")
+        num_taula = 0
+        tables = self.soup.select("table:nth-of-type(n):nth-of-type(-n+2)")
 
         for table in tables:
             rows = table.find_all("tr")
+            season = "Any"
             for row in rows:
                 cells = row.find_all("td")
-                ingredients = []
                 for cell in cells:
                     if len(cells) > 1:
                         if cell.find("a") is not None and cell.find("a").has_attr("href") and cell.find("a").has_attr("title") and cell is cells[1]:
                             name = cell.find("a")["title"]
-                        if cell.find('span', class_='nametemplate') is not None and cell.find('span', class_='nametemplate').find(
-                                'a').has_attr('title') and cell is cells[3]:
-                            title = cell.find('span', class_='nametemplate').find('a')['title']
-                            ingredients.append(title)
-
-                    newItem = item(name, ingredients, "Any")
+                        if len(cells) > 3:
+                            if cell.find("a") is not None and cell.find("a").has_attr("title") and num_taula > 0 and cell is cells[3]:
+                                season = cell.find("a")["title"]
+                    newItem = item(name, "Farm", season)
                     Dishes[name] = newItem
-
+            num_taula += 1
         return Dishes
 
 def main():
     forage = ForageScrape()
     forage_items = forage.parse_items()
-    del forage_items["a"]
+    del forage_items[""]
 
     for name in forage_items:
         item = forage_items[name]
         item.print_item()
 
+    #CookingScrape also returns Crops
     dish = CookingScrape()
     dishes = dish.parse_items()
+    del dishes[""]
 
     for name in dishes:
        dishes[name].print_item()
