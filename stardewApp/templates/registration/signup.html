@@ -1,10 +1,22 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-    <h1>Signup</h1>
-    <form class="site-form" action="." method="post">
-		{% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Signup">
-    </form>
+    <div class="container mt-5">
+        <div class="card bg-light">
+            <div class="card-header">
+                <div class="row" >
+                    <div class="col" style="flex-grow: 12">
+                        <h1 class="mt-3 text-center">REGISTER</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="site-form" action="." method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Signup">
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

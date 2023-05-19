@@ -1,16 +1,20 @@
 {% extends "web/base.html" %}
 {% block content %}
+    <!-- Location Form -->
     <form method="post" action="{% url "locations_add" %}">
         {% csrf_token %}
+        <!-- Name -->
         <div class="form-group">
             <label for="location_name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="Leaves his room and stands in the entryway."
                    , name="name">
         </div>
+        <!-- Area -->
         <div class="form-group">
             <label for="location_area">Area</label>
             <input type="text" class="form-control" id="area" placeholder="City" , name="area">
         </div>
+        <!-- Submit -->
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}
