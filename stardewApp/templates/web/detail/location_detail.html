@@ -28,7 +28,7 @@
                     <div class="form-group mt-3 row justify-content-center mt-3">
                         <div class="col-sm-6">
                             <button type="submit" class="btn btn-primary">Modify</button>
-                            <button class="btn btn-danger ml-2">Delete</button>
+                            <a href="{% url 'location_delete' location.id %}" class="btn btn-danger ml-2">Delete</a>
                         </div>
                     </div>
                 </form>
