@@ -26,13 +26,12 @@
                     </tr>
                     {% for schedule in schedules %}
                         <tr>
-                            <a href="{% url 'schedule_detail' schedule.id %}">
-                                <td>{{ schedule.day_of_week }}</td>
-                                <td>{{ schedule.hour }}</td>
-                                <td>{{ schedule.season }}</td>
-                                <td>{{ schedule.villager }}</td>
-                                <td>{{ schedule.location }}</td>
-                            </a>
+                            <td>{{ schedule.day_of_week }}</td>
+                            <td>{{ schedule.hour }}</td>
+                            <td>{{ schedule.season }}</td>
+                            <td>{{ schedule.villager }}</td>
+                            <td>{{ schedule.location }}</td>
+                            <td><a href="{% url 'schedule_detail' schedule.id %}" class="btn btn-primary mt-3">Detail</a></td>
                         </tr>
                     {% endfor %}
                 </table>

@@ -1,3 +1,4 @@
+import os
 import random
 
 from ..models import Season, Location, Item, Villager, Schedule
@@ -8,7 +9,8 @@ from django.contrib.auth.models import User
 # function to begin scraping process
 def start():
     print("Starting scraping process...")
-    # create user Scraper
+    # create user Scraper and Superusers django
+    os.system('python manage.py createsuperuser --noinput')
     user = User.objects.update_or_create(username='Scraper', password='1234')
     # execute scrap season
     seasons = webScraper_season.ScrapSeason()
@@ -93,6 +95,7 @@ def start():
     print("Villagers created")
 
     # execute scrap schedule
+    hours = ['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']
     days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     # get villager DB
     villagers = Villager.objects.all()
@@ -111,8 +114,7 @@ def start():
             auxlocation = Location.objects.get_or_create(name=locations[num])
             auxseason = Season.objects.get_or_create(name=season)
             Schedule.objects.update_or_create(villager=auxvillager[0], location=auxlocation[0], season=auxseason[0],
-                                              day_of_week=random.choice(days_of_week),
-                                              defaults={'hour': 'N/A'})
+                                              day_of_week=random.choice(days_of_week), hour=random.choice(hours))
 
     print("Schedules created")
     # clean location with name "F"

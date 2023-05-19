@@ -28,8 +28,8 @@
                         <label for="schedule_season" class="col-sm-2 col-form-label">Season:</label>
                         <div class="col-sm-4">
                             <select class="form-control" id="schedule_season" name="season" form="scheduleForm">
-                                {% for season_option in season_options %}
-                                    <option value="{{ season_option.value }}">{{ season_option.label }}</option>
+                                {% for season in seasons %}
+                                    <option value="{{ season.value }}">{{ season.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -38,8 +38,8 @@
                         <label for="schedule_villager" class="col-sm-2 col-form-label">Villager:</label>
                         <div class="col-sm-4">
                             <select class="form-control" id="schedule_villager" name="villager" form="scheduleForm">
-                                {% for villager_option in villager_options %}
-                                    <option value="{{ villager_option.value }}">{{ villager_option.label }}</option>
+                                {% for villager in villagers %}
+                                    <option value="{{ villager.value }}">{{ villager.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -48,8 +48,8 @@
                         <label for="schedule_location" class="col-sm-2 col-form-label">Location:</label>
                         <div class="col-sm-4">
                             <select class="form-control" id="schedule_location" name="location" form="scheduleForm">
-                                {% for location_option in location_options %}
-                                    <option value="{{ location_option.value }}">{{ location_option.label }}</option>
+                                {% for location in locations %}
+                                    <option value="{{ location.name }}">{{ location.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>

@@ -16,20 +16,23 @@
                         <div class="form-group mt-3 row justify-content-center">
                             <label for="villager_name" class="col-sm-2 col-form-label">Name:</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="villager_name" value="{{ villager.name }}" name="name">
+                                <input type="text" class="form-control" id="villager_name" value="{{ villager.name }}"
+                                       name="name">
                             </div>
                         </div>
                         <div class="form-group mt-3 row justify-content-center">
                             <label for="villager_birthday" class="col-sm-2 col-form-label">Birthday:</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="villager_birthday" value="{{ villager.birthday }}" name="birthday">
+                                <input type="text" class="form-control" id="villager_birthday"
+                                       value="{{ villager.birthday }}" name="birthday">
                             </div>
                         </div>
                         <div class="form-group mt-3 row justify-content-center">
                             <label for="villager_loved_item" class="col-sm-2 col-form-label">Loved Item:</label>
                             <div class="col-sm-4">
-                                <select class="form-control" id="villager_loved_item" name="loved_item" form="villagerForm">
-                                    <option value="{{ villager.loved_item }}"></option>
+                                <select class="form-control" id="villager_loved_item" name="loved_item"
+                                        form="villagerForm">
+                                    <option value="{{ villager.loved_item }}">{{ villager.loved_item }}</option>
                                     {% for item in items %}
                                         <option value="{{ item.id }}">{{ item.name }}</option>
                                     {% endfor %}
@@ -39,8 +42,9 @@
                         <div class="form-group mt-3 row justify-content-center">
                             <label for="villager_liked_item" class="col-sm-2 col-form-label">Liked Item:</label>
                             <div class="col-sm-4">
-                                <select class="form-control" id="villager_liked_item" name="liked_item" form="villagerForm">
-                                    <option value="{{ villager.liked_item }}"></option>
+                                <select class="form-control" id="villager_liked_item" name="liked_item"
+                                        form="villagerForm">
+                                    <option value="{{ villager.liked_item }}">{{ villager.liked_item }}</option>
                                     {% for item in items %}
                                         <option value="{{ item.id }}">{{ item.name }}</option>
                                     {% endfor %}
