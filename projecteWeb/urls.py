@@ -47,6 +47,13 @@ urlpatterns = [
     path('villagers/<int:pk>/', villager_detail, name='villager_detail'),
     path('schedules/<int:pk>/', schedule_detail, name='schedule_detail'),
 
+    # delete site
+    path('seasons/delete/<int:pk>/', season_detail, name='season_delete'),
+    path('locations/delete/<int:pk>/', location_detail, name='location_delete'),
+    path('items/delete/<int:pk>/', item_detail, name='item_delete'),
+    path('villagers/delete/<int:pk>/', villager_detail, name='villager_delete'),
+    path('schedules/delete/<int:pk>/', schedule_detail, name='schedule_delete'),
+
     # account site
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', signup_review, name='signup'),

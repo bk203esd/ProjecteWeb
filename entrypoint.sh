@@ -12,3 +12,8 @@ echo "from django.contrib.auth import get_user_model; User = get_user_model(); U
 # Start server
 echo "Starting server"
 python manage.py runserver 0.0.0.0:8000
+
+# Execute curl command
+#echo "Executing curl command"
+#sudo apt install curl -y
+#curl http://localhost:8000/api/db/

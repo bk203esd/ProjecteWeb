@@ -2,7 +2,7 @@
 {% block content %}
 {% if user.is_superuser or user == villager.user %}
     <div class="container mt-5">
-        <div class="card bg-light">
+        <div class="card ">
             <div class="card-header">
                 <div class="row">
                     <div class="col" style="flex-grow: 12">
@@ -28,7 +28,7 @@
                     <div class="form-group mt-3 row justify-content-center mt-3">
                         <div class="col-sm-6">
                             <button type="submit" class="btn btn-primary">Modify</button>
-                            <button class="btn btn-danger ml-2">Delete</button>
+                            <a href="{% url 'location_delete' location.id %}" class="btn btn-danger ml-2">Delete</a>
                         </div>
                     </div>
                 </form>
@@ -37,7 +37,7 @@
     </div>
 {% else %}
     <div class="container mt-5">
-        <div class="card bg-light">
+        <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col" style="flex-grow: 12">
