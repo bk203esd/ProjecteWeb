@@ -32,10 +32,11 @@ class Item(models.Model):
 class Villager(models.Model):
     name = models.CharField(max_length=20)
     birthday = models.CharField(max_length=20)
-    # loved_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='loved_item')
-    loved_item = models.ManyToManyField(Item, related_name='loved_item')
-    # liked_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='liked_item')
-    liked_item = models.ManyToManyField(Item, related_name='liked_item')
+    loved_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='loved_item')
+    # loved_item = models.ManyToManyField(Item, related_name='loved_item')
+    liked_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='liked_item')
+    # liked_item = models.ManyToManyField(Item, related_name='liked_item')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -70,7 +71,6 @@ class VillagerAdmin(admin.ModelAdmin):
 
 class ScheduleAdmin(admin.ModelAdmin):
     list_display = ('day_of_week', 'hour', 'season', 'villager', 'location')
-
 
 # Create the root user.
 # User.objects.create_superuser('root', 'root@root.com', 'root')

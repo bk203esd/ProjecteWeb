@@ -1,16 +1,38 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <h1>SEASON LIST</h1>
-    <div class="w3-container w3-center">
-        {% for season in seasons %}
-            <div class="w3-light-gray w3-topbar w3-bottombar w3-leftbar and w3-rightbar w3-border-black w3-round-large w3-section">
-                <div class="w3-xlarge">
-                    {#                    <a href="{% url 'season_detail' season.id %}">{{ season.name }}</a>#}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col" style="flex-grow: 12">
+                        <h1 class="mt-3 text-center" style="margin-left: 15%">SEASON LIST</h1>
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'seasons_add' %}" class="btn btn-primary mt-3">Create</a>
+                    </div>
                 </div>
-                <div class="w3-large">
-                    <div>{{ season.name }}</div>
-                </div>
+                <input type="text" class="form-control" id="name" placeholder="Search" style=" width: 80%; margin: 0 10%">
             </div>
-        {% endfor %}
+            <div class="card-body text-center ">
+                {% for season in seasons %}
+                    <div class="card mb-4 d-inline-block">
+                        <div class="card-body bg-light">
+                            <h5 class="card-title">
+                                <a href="{% url 'season_detail' season.id %}">{{ season.name }}</a>
+                            </h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+    <script>
+        var seasons = [];
+        {% for season in seasons %}
+            seasons.push("{{ season.name }}")
+        {% endfor %}
+        $(function () {
+            $("#name").autocomplete({source: seasons, minLength: 1});
+        });
+    </script>
 {% endblock %}

@@ -2,9 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- JQuery libraries -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" >
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'stardewApp/navBar.css' %}"/>
     <title>Stardew App</title>
 
     <!-- Bootstrap CSS -->
@@ -13,10 +19,53 @@
     {% bootstrap_javascript %}
     {% bootstrap_messages %}
 
+    <style>
+        body {
+            background-image: url('https://wallpapers.com/images/featured-full/stardew-background-5nm3af2n23ja2grf.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            position: fixed; /* Fija la barra de navegación en la parte superior */
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .page-content {
+            margin-top: 100px; /* Ajusta este valor según la altura de tu barra de navegación */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            width: 80%;
+            background-color: rgba(255, 255, 255, 0.6); /* Fondo semi transparente */
+        }
+
+        .navbar-app-name {
+            font-family: "Arial Rounded MT Bold", sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .img-fixed-size {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+    </style>
 </head>
 <body>
 {% include "web/navBar.html" %}
-{% block content %}
-{% endblock %}
+<div class="page-content">
+    {% block content %}
+    {% endblock %}
+</div>
+
 </body>
 </html>

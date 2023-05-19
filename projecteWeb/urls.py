@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from oauth2_provider.views import TokenView
 from stardewApp.views import create_season, create_location, create_item, create_villager, create_schedule, home, \
-    seasonListView, locationListView, itemListView, villagerListView, scheduleLisTView
+    seasonListView, locationListView, itemListView, villagerListView, scheduleLisTView, season_detail, location_detail, \
+    item_detail, villager_detail, schedule_detail, signup_review, integrateDB
 
 urlpatterns = [
     path('', home, name='home'),
@@ -38,6 +40,27 @@ urlpatterns = [
     path('villagers/', villagerListView.as_view(), name='villager_list'),
     path('schedules/', scheduleLisTView.as_view(), name='schedule_list'),
 
+    # detail site
+    path('seasons/<int:pk>/', season_detail, name='season_detail'),
+    path('locations/<int:pk>/', location_detail, name='location_detail'),
+    path('items/<int:pk>/', item_detail, name='item_detail'),
+    path('villagers/<int:pk>/', villager_detail, name='villager_detail'),
+    path('schedules/<int:pk>/', schedule_detail, name='schedule_detail'),
+
+    # delete site
+    path('seasons/delete/<int:pk>/', season_detail, name='season_delete'),
+    path('locations/delete/<int:pk>/', location_detail, name='location_delete'),
+    path('items/delete/<int:pk>/', item_detail, name='item_delete'),
+    path('villagers/delete/<int:pk>/', villager_detail, name='villager_delete'),
+    path('schedules/delete/<int:pk>/', schedule_detail, name='schedule_delete'),
+
     # account site
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', signup_review, name='signup'),
+
+    # API site
+    path('api/token/', TokenView.as_view(), name='token'),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('api/db', integrateDB, name='integrateDB')
+
 ]

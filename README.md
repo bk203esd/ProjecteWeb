@@ -20,6 +20,7 @@ allows you to view the wiki offline.
 ### Steps
 
 #### Deploy en local
+
 1. Clone the repository
 2. Navigate to the directory
 3. Run `poetry install`
@@ -31,6 +32,7 @@ allows you to view the wiki offline.
 9. To re-enter the virtual environment, run `poetry shell`
 
 #### Deploy en docker
+
 1. Clone the repository
 2. Navigate to the directory
 3. Run `docker-compose up -d`
@@ -40,3 +42,8 @@ allows you to view the wiki offline.
 7. To re-start the docker container, run `docker-compose up -d`
 8. To re-build the docker container, run `docker-compose up -d --build`
 9. To re-build the docker container without using cache, run `docker-compose up -d --build --no-cache`
+
+#### Populate the database
+
+1. Make GET request to `localhost:8000/api/db`
+2. Enjoy!

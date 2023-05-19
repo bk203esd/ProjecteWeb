@@ -1,0 +1,51 @@
+{% extends "web/base.html" %}
+{% block content %}
+{% if user.is_superuser or user == villager.user %}
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col" style="flex-grow: 12">
+                            <h1 class="mt-3 text-center"> SEASON DETAILS</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    <form method="post" action="{% url 'season_detail' season.id %}">
+                        {% csrf_token %}
+                        <div class="form-group col-md-6 offset-md-3">
+                            <label for="season_name">Name</label>
+                            <input type="text" class="form-control" id="name" value="{{ season.name }}" name="name">
+                        </div>
+                        <div class="form-group row justify-content-center mt-3">
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary">Modify</button>
+                                <a href="{% url 'season_delete' season.id %}" class="btn btn-danger ml-2">Delete</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container mt-5">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col" style="flex-grow: 12">
+                            <h1 class="mt-3 text-center"> SEASON DETAILS</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    {% csrf_token %}
+                    <div class="form-group col-md-6 offset-md-3">
+                        <div for="season_name">Name</div>
+                        <div type="text" class="form-control">{{ season.name }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,9 +1,6 @@
 import urllib3
 import bs4
-import os, django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projecteWeb.settings')
-django.setup()
 from stardewApp.models import Villager
 
 # Global variables needed to get the villager's Schedule
@@ -11,6 +8,8 @@ dailySchedule = []
 fullParsedSchedule = []
 
 """ Used for villagers whose schedule depends on the season """
+
+
 def parseFullSchedule(name, day):
     # Get actual season name
     name = name.text.split('\xa0')
@@ -44,6 +43,8 @@ def parseFullSchedule(name, day):
 
 
 """ Used for villagers whose schedule depends only on the day """
+
+
 def parseWeakSchedule(name, day):
     # Type of the day (Raining, Monday, ...)
     name = name.text.split('\n')[0]
@@ -62,6 +63,8 @@ def parseWeakSchedule(name, day):
 """ Used for all villagers
     ->checks for a good constructed schedule (with tables)
     ->checks for a lazy one (just text) or non scheduled villagers"""
+
+
 def parseSchedule(soup):
     dailySchedule.clear()
     fullParsedSchedule.clear()

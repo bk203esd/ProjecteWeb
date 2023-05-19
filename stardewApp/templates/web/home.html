@@ -1,4 +1,141 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <div>Home</div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-borderless mx-auto">
+                    <tbody>
+                    <tr>
+                        <td style="text-align: center"><img
+                                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d4ac1077-486f-4b64-9e3c-8bfd9914c51d/d9v3355-71a69db8-8cef-4da4-a0cc-88e15c4e48c2.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Q0YWMxMDc3LTQ4NmYtNGI2NC05ZTNjLThiZmQ5OTE0YzUxZFwvZDl2MzM1NS03MWE2OWRiOC04Y2VmLTRkYTQtYTBjYy04OGUxNWM0ZTQ4YzIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.VSxRfwoxg-7Wu9p28TO8RwoHAvkk36L0M87G2TwxIv4"
+                                class="img-fluid" style="width: 50%"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="https://stardewcommunitywiki.com/mediawiki/images/3/3b/Maple_Stage_5.png"
+                                         class="img-fluid">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Seasons</h5>
+                                            This is a description of the seasons.
+                                        </div>
+                                        <div class="media-right">
+                                            <a class="btn btn-primary" href="{% url "season_list" %}">Seasons</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="https://static.wikia.nocookie.net/stardewvalley/images/4/43/Map.png/revision/latest?cb=20160409203326"
+                                         class="img-fluid">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Locations</h5>
+                                            This is a description of the locations.
+                                        </div>
+                                        <div class="media-right">
+                                            <a class="btn btn-success" href="{% url "location_list" %}">Locations</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="https://stardewcommunitywiki.com/mediawiki/images/thumb/6/6e/Shipping_Page_1.png/400px-Shipping_Page_1.png"
+                                         class="img-fluid">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Items</h5>
+                                            This is a description of the items.
+                                        </div>
+                                        <div class="media-right">
+                                            <a class="btn btn-warning" href="{% url "item_list" %}">Items</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="https://i.redd.it/cly7lyokf3e61.png" class="img-fluid">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Villagers</h5>
+                                            This is a description of the villagers.
+                                        </div>
+                                        <div class="media-right">
+                                            <a class="btn btn-danger" href="{% url "villager_list" %}">Villager</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="https://stardewvalleywiki.com/mediawiki/images/6/6d/Calendar_Spring.png"
+                                         class="img-fluid">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Schedules</h5>
+                                            This is a description of the schedules.
+                                        </div>
+                                        <div class="media-right">
+                                            <a class="btn btn-secondary" href="{% url "schedule_list" %}">Schedule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
