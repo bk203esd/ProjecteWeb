@@ -1,8 +1,67 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <div>{{ schedule.day_of_weel }}</div>
-    <div>{{ schedule.hour }}</div>
-    <div>{{ schedule.season }}</div>
-    <div>{{ schedule.villager }}</div>
-    <div>{{ schedule.location }}</div>
+    <div class="container mt-5">
+        <div class="card bg-light">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col" style="flex-grow: 12">
+                        <h1 class="mt-3 text-center">Schedule Details</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <form method="post" action="{% url 'schedule_detail' schedule.id %}" id="scheduleForm">
+                    {% csrf_token %}
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="schedule_day_of_week" class="col-sm-2 col-form-label">Day of the Week:</label>
+                        <div class="col-sm-4">
+                            <div class="form-control">{{ schedule.day_of_week }}</div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="schedule_hour" class="col-sm-2 col-form-label">Hour:</label>
+                        <div class="col-sm-4">
+                            <div class="form-control">{{ schedule.hour }}</div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="schedule_season" class="col-sm-2 col-form-label">Season:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="schedule_season" name="season" form="scheduleForm">
+                                {% for season_option in season_options %}
+                                    <option value="{{ season_option.value }}">{{ season_option.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="schedule_villager" class="col-sm-2 col-form-label">Villager:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="schedule_villager" name="villager" form="scheduleForm">
+                                {% for villager_option in villager_options %}
+                                    <option value="{{ villager_option.value }}">{{ villager_option.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="schedule_location" class="col-sm-2 col-form-label">Location:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="schedule_location" name="location" form="scheduleForm">
+                                {% for location_option in location_options %}
+                                    <option value="{{ location_option.value }}">{{ location_option.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mt-4 row justify-content-center">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary">Modify</button>
+                            <button class="btn btn-danger ml-2">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
