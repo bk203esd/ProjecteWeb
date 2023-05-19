@@ -25,7 +25,7 @@ class ForageScrape(object):
 
     def parse_items(self):
         forageables = {}
-        name = "a"
+        name = ""
         self.get_web()
         tables = self.soup.select("table:nth-of-type(n+4):nth-of-type(-n+12)")
         num_taula = 0
@@ -73,10 +73,10 @@ class ForageScrape(object):
         return forageables
 
 
-class FishingScrape(object):
+class CookingScrape(object):
     def __init__(self) -> None:
         self.html = None
-        self.url = "https://stardewvalleywiki.com/Fish"
+        self.url = "https://stardewvalleywiki.com/Cooking"
         self.soup = None
 
     def get_web(self):
@@ -84,45 +84,45 @@ class FishingScrape(object):
         self.soup = bs4.BeautifulSoup(resposta.content, "html.parser")
 
     def parse_items(self):
-        fish = {}
+        Dishes = {}
+        name = ""
         self.get_web()
-        tables = self.soup.select("table:nth-of-type(n):nth-of-type(-n+4)")
         num_taula = 0
+        tables = self.soup.select("table:nth-of-type(n):nth-of-type(-n+2)")
 
         for table in tables:
             rows = table.find_all("tr")
+            season = "Any"
             for row in rows:
                 cells = row.find_all("td")
-                location = ""
                 for cell in cells:
-                    if cell.find("a") is not None and cell.find("a").has_attr("href") and cell.find("a").has_attr("title") and cell is cells[1]:
-                        name = cell.find("a")["title"]
-                    if cell.find('ul') is not None and cell.find('ul').find('li') and cell is cells[6] and num_taula != 1:
-                        loc_elements = cell.find_all('li')
-                        for locations in loc_elements:
-                            title = locations.find('a').get_text()
-                            location = title
-                    elif num_taula == 1:
-                        location = "Night Market"
-                    if cell.find('ul') is not None and cell.find('ul').find('li') and cell is cells[8] and num_taula != 1:
-                        loc_elements = cell.find_all('li')
-                        for locations in loc_elements:
-                            title = locations.find('a').get_text()
-                            location = title
+                    if len(cells) > 1:
+                        if cell.find("a") is not None and cell.find("a").has_attr("href") and cell.find("a").has_attr("title") and cell is cells[1]:
+                            name = cell.find("a")["title"]
+                        if len(cells) > 3:
+                            if cell.find("a") is not None and cell.find("a").has_attr("title") and num_taula > 0 and cell is cells[3]:
+                                season = cell.find("a")["title"]
+                    newItem = item(name, "Farm", season)
+                    Dishes[name] = newItem
+            num_taula += 1
+        return Dishes
+
 def main():
     forage = ForageScrape()
     forage_items = forage.parse_items()
-    del forage_items["a"]
+    del forage_items[""]
 
     for name in forage_items:
         item = forage_items[name]
         item.print_item()
 
-    fish = FishingScrape()
-    fish_items = fish.parse_items()
+    #CookingScrape also returns Crops
+    dish = CookingScrape()
+    dishes = dish.parse_items()
+    del dishes[""]
 
-    for name in fish_items:
-        forage_items[name].print_item()
+    for name in dishes:
+       dishes[name].print_item()
 
 if __name__ == "__main__":
     main()
