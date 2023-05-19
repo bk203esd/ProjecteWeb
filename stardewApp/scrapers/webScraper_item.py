@@ -102,10 +102,40 @@ class CookingScrape(object):
                         if len(cells) > 3:
                             if cell.find("a") is not None and cell.find("a").has_attr("title") and num_taula > 0 and cell is cells[3]:
                                 season = cell.find("a")["title"]
-                    newItem = item(name, "Farm", season)
+                    newItem = item(name, ["Farm"], season)
                     Dishes[name] = newItem
             num_taula += 1
         return Dishes
+
+class MineralScrape(object):
+    def __init__(self) -> None:
+        self.html = None
+        self.url = "https://stardewvalleywiki.com/Minerals"
+        self.soup = None
+
+    def get_web(self):
+        resposta = requests.get(self.url)
+        self.soup = bs4.BeautifulSoup(resposta.content, "html.parser")
+
+    def parse_items(self):
+        Minerals = {}
+        name = ""
+        self.get_web()
+        tables = self.soup.select("table:nth-of-type(n):nth-of-type(-n+4)")
+
+        for table in tables:
+            rows = table.find_all("tr")
+            season = "Any"
+            for row in rows:
+                cells = row.find_all("td")
+                for cell in cells:
+                    if len(cells) > 1:
+                        if cell.find("a") is not None and cell.find("a").has_attr("href") and cell.find("a").has_attr("title") and cell is cells[1]:
+                            name = cell.find("a")["title"]
+
+                    newItem = item(name, ["The Mines"], season)
+                    Minerals[name] = newItem
+        return Minerals
 
 def main():
     forage = ForageScrape()
@@ -123,6 +153,13 @@ def main():
 
     for name in dishes:
        dishes[name].print_item()
+
+    mineral = MineralScrape()
+    minerals = mineral.parse_items()
+    del minerals[""]
+
+    for name in minerals:
+       minerals[name].print_item()
 
 if __name__ == "__main__":
     main()
