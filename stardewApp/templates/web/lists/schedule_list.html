@@ -1,7 +1,7 @@
 {% extends "web/base.html" %}
 {% block content %}
     <div class="container mt-5">
-        <div class="card bg-light">
+        <div class="card ">
             <div class="card-header">
                 <div class="row">
                     <div class="col" style="flex-grow: 12">
@@ -11,12 +11,11 @@
                         <a href="{% url 'schedules_add' %}" class="btn btn-primary mt-3">Create</a>
                     </div>
                 </div>
-                <div class="row">
-                    <input type="text" class="form-control" id="name" placeholder="Search">
-                </div>
+                <input type="text" class="form-control" id="name" placeholder="Search" style=" width: 80%; margin: 0 10%">
+
             </div>
-            <div class="card-body text-center">
-                <table class="table table-striped">
+            <div class="card-body text-center" style=" width: 80%; margin: 0 10%">
+                <table class="table text-center table-striped bg-light" >
                     <tr>
                         <th>Day Of Week</th>
                         <th>Hour</th>

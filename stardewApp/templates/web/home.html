@@ -1,7 +1,7 @@
 {% extends "web/base.html" %}
 {% block content %}
     <div class="container mt-5">
-        <div class="card bg-light">
+        <div class="card">
             <div class="card-body">
                 <table class="table table-borderless mx-auto">
                     <tbody>
@@ -75,8 +75,8 @@
                                             <h5 class="mt-0">Items</h5>
                                             This is a description of the items.
                                         </div>
-                                        <div class="media-right" href="{% url "item_list" %}">
-                                            <a class="btn btn-warning">Items</a>
+                                        <div class="media-right">
+                                            <a class="btn btn-warning" href="{% url "item_list" %}">Items</a>
                                         </div>
                                     </div>
                                 </div>
@@ -98,8 +98,8 @@
                                             <h5 class="mt-0">Villagers</h5>
                                             This is a description of the villagers.
                                         </div>
-                                        <div class="media-right" href="{% url "villager_list" %}">
-                                            <a class="btn btn-danger">Villagers</a>
+                                        <div class="media-right">
+                                            <a class="btn btn-danger" href="{% url "villager_list" %}">Villager</a>
                                         </div>
                                     </div>
                                 </div>
@@ -122,8 +122,8 @@
                                             <h5 class="mt-0">Schedules</h5>
                                             This is a description of the schedules.
                                         </div>
-                                        <div class="media-right" href="{% url "schedule_list" %}">
-                                            <a class="btn btn-secondary">Schedules</a>
+                                        <div class="media-right">
+                                            <a class="btn btn-secondary" href="{% url "schedule_list" %}">Schedule</a>
                                         </div>
                                     </div>
                                 </div>

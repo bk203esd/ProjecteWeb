@@ -1,7 +1,7 @@
 {% extends "web/base.html" %}
 {% block content %}
     <div class="container mt-5">
-        <div class="card bg-light">
+        <div class="card ">
             <div class="card-header">
                 <div class="row">
                     <div class="col" style="flex-grow: 12">
@@ -11,14 +11,13 @@
                         <a href="{% url 'locations_add' %}" class="btn btn-primary mt-3">Create</a>
                     </div>
                 </div>
-                <div class="row">
-                    <input type="text" class="form-control" id="name" placeholder="Search">
-                </div>
+                <input type="text" class="form-control" id="name" placeholder="Search" style=" width: 80%; margin: 0 10%">
+
             </div>
             <div class="card-body text-center">
                 {% for location in locations %}
                     <div class="card mb-4 d-inline-block">
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <h5 class="card-title">
                                 <a href="{% url 'location_detail' location.id %}">{{ location.name }}</a>
                             </h5>
