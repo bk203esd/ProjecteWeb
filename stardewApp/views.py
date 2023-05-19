@@ -1,17 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView
-from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 
 from .forms import *
 from .models import Season, Location, Item, Villager, Schedule
+from .scrapers import stardewWebScrapper
 
 
 # Create your views here.
 @login_required
 def create_season(request):
-    if not  request.user.is_superuser:
+    if not request.user.is_superuser:
         return redirect('home')
     if request.method == 'POST':
         form = SeasonForm(request.POST)
@@ -43,7 +45,7 @@ def season_detail(request, pk):
 
 @login_required
 def create_location(request):
-    if not  request.user.is_superuser:
+    if not request.user.is_superuser:
         return redirect('home')
     if request.method == 'POST':
         form = LocationForm(request.POST)
@@ -75,7 +77,7 @@ def location_detail(request, pk):
 
 @login_required
 def create_item(request):
-    if not  request.user.is_superuser:
+    if not request.user.is_superuser:
         return redirect('home')
     if request.method == 'POST':
         form = ItemForm(request.POST)
@@ -188,3 +190,10 @@ def signup_review(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def integrateDB(request):
+    finalresponse = {}
+    stardewWebScrapper.start()
