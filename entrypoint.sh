@@ -14,6 +14,6 @@ echo "Starting server"
 python manage.py runserver 0.0.0.0:8000
 
 # Execute curl command
-echo "Executing curl command"
+#echo "Executing curl command"
 #sudo apt install curl -y
-curl http://localhost:8000/api/db/
+#curl http://localhost:8000/api/db/
