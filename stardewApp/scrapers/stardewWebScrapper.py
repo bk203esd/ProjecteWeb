@@ -1,11 +1,7 @@
-from stardewApp.scrapers.webScraper_schedule import ScrapSchedule
-from stardewApp.models import *
+from ..models import Season, Location, Item, Villager, Schedule
+from ..scrapers import webScraper_location, webScraper_item, webScraper_villager, webScraper_schedule
 
 
-def do_Schedule():
-    villager = Villager()
-    villager.name = 'Alex'
-
-    scrap_schedule = ScrapSchedule()
-    schedule = scrap_schedule.get_data(villager)
-    print(schedule)
+# function to begin scraping process
+def start():
+    print("Starting scraping process...")
