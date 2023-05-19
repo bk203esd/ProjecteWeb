@@ -4,12 +4,12 @@ from django.contrib.auth import authenticate
 
 @given('a registered user that wants to login')
 def step_given_registered_user_wants_to_login(context):
-    context.user = User.objects.create_user(username='testuser', password='testpassword')
+    context.user = User.objects.create_user(username='davitm', password='suruluru')
 
 @when('they introduce a stored user and password combination')
 def step_when_introduce_stored_user_password(context):
-    context.username = 'testuser'
-    context.password = 'testpassword'
+    context.username = 'davitm'
+    context.password = 'suruluru'
 
 @then('the login is successful')
 def step_then_login_successful(context):
