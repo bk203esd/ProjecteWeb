@@ -85,6 +85,7 @@ class CookingScrape(object):
 
     def parse_items(self):
         Dishes = {}
+        name = "a"
         self.get_web()
         tables = self.soup.select("table:nth-of-type(n)")
 
@@ -94,12 +95,12 @@ class CookingScrape(object):
                 cells = row.find_all("td")
                 ingredients = []
                 for cell in cells:
-                    if cell.find("a") is not None and cell.find("a").has_attr("href") and cell.find("a").has_attr("title") and cell is cells[1]:
-                        name = cell.find("a")["title"]
-                    if cell.find('ul') is not None and cell.find('ul').find('li') and cell is cells[3]:
-                        ing_elements = cell.find_all('li')
-                        for ingredient in ing_elements:
-                            title = ingredient.find('a').get_text()
+                    if len(cells) > 1:
+                        if cell.find("a") is not None and cell.find("a").has_attr("href") and cell.find("a").has_attr("title") and cell is cells[1]:
+                            name = cell.find("a")["title"]
+                        if cell.find('span', class_='nametemplate') is not None and cell.find('span', class_='nametemplate').find(
+                                'a').has_attr('title') and cell is cells[3]:
+                            title = cell.find('span', class_='nametemplate').find('a')['title']
                             ingredients.append(title)
 
                     newItem = item(name, ingredients, "Any")
@@ -120,7 +121,7 @@ def main():
     dishes = dish.parse_items()
 
     for name in dishes:
-        forage_items[name].print_item()
+       dishes[name].print_item()
 
 if __name__ == "__main__":
     main()
