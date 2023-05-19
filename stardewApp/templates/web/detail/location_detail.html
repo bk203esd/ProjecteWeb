@@ -1,15 +1,61 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <form method="post" action="{% url "location_detail" location.id %}">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="location_name">Name</label>
-            <input type="text" class="form-control" id="name" value="{{ location.name }}" name="name">
+{% if user.is_superuser or user == villager.user %}
+    <div class="container mt-5">
+        <div class="card bg-light">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col" style="flex-grow: 12">
+                        <h1 class="mt-3 text-center">LOCATION DETAILS</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <form method="post" action="{% url 'location_detail' location.id %}">
+                    {% csrf_token %}
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="location_name" class="col-sm-2 col-form-label">Name:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="location_name" value="{{ location.name }}" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row justify-content-center">
+                        <label for="location_area" class="col-sm-2 col-form-label">Area:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="location_area" value="{{ location.area }}" name="area">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row justify-content-center mt-3">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary">Modify</button>
+                            <button class="btn btn-danger ml-2">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="location_area">Area</label>
-            <input type="text" class="form-control" id="area" value="{{ location.area }}" name="area">
+    </div>
+{% else %}
+    <div class="container mt-5">
+        <div class="card bg-light">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col" style="flex-grow: 12">
+                        <h1 class="mt-3 text-center">Location Details</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="location_name">Name:</label>
+                    <div class="form-control">{{ location.name }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="location_area">Area:</label>
+                    <div class="form-control">{{ location.area }}</div>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+{% endif %}
 {% endblock %}
