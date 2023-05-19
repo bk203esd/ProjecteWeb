@@ -13,6 +13,7 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     POETRY_VERSION=1.4.1
 
 COPY poetry.lock pyproject.toml ./
+RUN apt install curl -y
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 RUN pip install --upgrade pip
 
@@ -23,6 +24,7 @@ RUN pip install splinter
 
 RUN poetry config virtualenvs.create false
 RUN poetry install
+
 
 # Copia los archivos de la aplicación
 COPY . .
