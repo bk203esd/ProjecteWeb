@@ -4,17 +4,29 @@
     <div class="container mt-5">
         <div class="card bg-light">
             <div class="card-header">
-                <div class="row" >
+                <div class="row">
                     <div class="col" style="flex-grow: 12">
                         <h1 class="mt-3 text-center">REGISTER</h1>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <form class="site-form" action="." method="post">
+                <form method="POST" actione="." class="login-form spacer" id="signup-form">
                     {% csrf_token %}
-                    {{ form }}
-                    <input type="submit" value="Signup">
+                    <div>USUARI:</div>
+                    <div class="input-group">
+                        {{ form.username }}
+                    </div>
+                    <div>PASSWORD:</div>
+                    <div class="input-group">
+                        {{ form.password1 }}
+                    </div>
+                    <div>REPETIR PASSWORD:</div>
+                    <div class="input-group">
+                        {{ form.password2 }}
+                    </div>
+
+                    <input type="submit" class="submit" value="Signup">
                 </form>
             </div>
         </div>
