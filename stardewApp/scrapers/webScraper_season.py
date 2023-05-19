@@ -25,7 +25,6 @@ class ScrapSeason(object):
 
     def parse_bs4(self):
         global seasons
-        # regex = re.compile(".*wikitable.*")
         soup = bs4.BeautifulSoup(self.html, features="html.parser")
         seasonTable = soup.find('table', attrs={'id': 'navbox'})
 
