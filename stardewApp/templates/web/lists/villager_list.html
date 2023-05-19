@@ -2,6 +2,7 @@
 {% block content %}
     <h1>VILLAGER LIST</h1>
     <div class="w3-container w3-center">
+        <input type="text" class="form-control" id="name" placeholder="Search">
         {% for villager in villagers %}
             <div class="w3-light-gray w3-topbar w3-bottombar w3-leftbar and w3-rightbar w3-border-black w3-round-large w3-section">
                 <div class="w3-xlarge">
@@ -13,4 +14,13 @@
             </div>
         {% endfor %}
     </div>
+    <script>
+        var villagers = [];
+        {% for villager in villagers %}
+            villagers.push("{{ villager.name }}")
+        {% endfor %}
+        $(function() {
+            $( "#name" ).autocomplete({source: villagers, minLength: 1});
+        });
+    </script>
 {% endblock %}
