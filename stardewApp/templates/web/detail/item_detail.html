@@ -1,5 +1,6 @@
 {% extends "web/base.html" %}
 {% block content %}
+{% if user.is_superuser or user == villager.user %}
     <form method="post" action="{% url "item_detail" item.id %}" id="itemForm">
         {% csrf_token %}
         <div class="form-group">
@@ -30,4 +31,21 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+{% else %}
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="item_name">Name</label>
+            <div type="text" class="form-control">{{ item.name }}</div>
+        <div class="form-group">
+            <label for="item_category">Category</label>
+            <div type="text" class="form-control">{{ item.category }}</div>
+        <div class="form-group">
+            <label for="item_location">Location</label>
+            <div class="form-control">{{ item.location }}</div>
+        </div>
+        <div class="form-group">
+            <label for="item_season">Season</label>
+            <div class="form-control">{{ item.season }}</div>
+        </div>
+{% endif %}
 {% endblock %}

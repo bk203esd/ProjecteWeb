@@ -142,6 +142,8 @@ def villager_detail(request, pk):
 
 @login_required
 def create_schedule(request):
+    if not  request.user.is_superuser:
+        return redirect('home')
     if request.method == 'POST':
         form = ScheduleForm(request.POST)
         if form.is_valid():
