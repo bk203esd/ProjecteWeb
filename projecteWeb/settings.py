@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR_ENV = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Enviroment in docker or local
-#environ.Env.read_env(os.path.join(BASE_DIR_ENV, 'projecteWeb/.env.docker'))
+# environ.Env.read_env(os.path.join(BASE_DIR_ENV, 'projecteWeb/.env.docker'))
 environ.Env.read_env(os.path.join(BASE_DIR_ENV, 'projecteWeb/.env.local'))
 
 # Quick-start development settings - unsuitable for production
@@ -164,3 +164,5 @@ OAUTH2_PROVIDER = {
 # Redirect when login is correct
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
