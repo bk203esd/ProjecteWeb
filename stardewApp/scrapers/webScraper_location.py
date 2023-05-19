@@ -1,10 +1,13 @@
 import urllib3
 import bs4
 
+final_locations = []
+
 
 class WebScrape(object):
     def __init__(self) -> None:
-        self.url = "https://stardewvalleywiki.com/Villagers"
+        self.url = "https://stardewvalleywiki.com"
+        self.data = None
 
     def get_web(self):
         httppool = urllib3.PoolManager()
@@ -15,16 +18,18 @@ class WebScrape(object):
 
     def parse_bs4(self):
         soup = bs4.BeautifulSoup(self.html, features="html.parser")
-        # print(soup)
-        div_main = soup.find_all('div', attrs={'class': 'gallerytext'})
-        # self.data = div_main.find_all('title')
+        all_locations = soup.find_all('div', attrs={'class': 'bordered'})
         self.data = []
-        for ref in div_main:
-            villager = ref.find('a').get('title')
-            self.data.append(villager)
+        for location in all_locations:
+            locations = location.find_all('p')
+            for item in locations:
+                final_locations.append(item.text.split('\n')[0])
+            locations = location.find_all('dl')
+            for item in locations:
+                final_locations.append(item.text.split('\n')[0])
 
     def extract_data(self):
-        self.data = self.data
+        self.data = final_locations
 
     def parse_html(self):
         self.parse_bs4()
