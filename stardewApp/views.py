@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from .forms import *
 from .models import Season, Location, Item, Villager, Schedule
@@ -197,3 +199,5 @@ def signup_review(request):
 def integrateDB(request):
     finalresponse = {}
     stardewWebScrapper.start()
+    finalresponse['status'] = 'success'
+    return Response(finalresponse, status=status.HTTP_200_OK)

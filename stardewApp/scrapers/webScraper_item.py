@@ -102,7 +102,7 @@ class CookingScrape(object):
                         if len(cells) > 3:
                             if cell.find("a") is not None and cell.find("a").has_attr("title") and num_taula > 0 and cell is cells[3]:
                                 season = cell.find("a")["title"]
-                    newItem = item(name, ["Farm"], season)
+                    newItem = item(name, "Farm", season)
                     Dishes[name] = newItem
             num_taula += 1
         return Dishes
@@ -153,13 +153,6 @@ def main():
 
     for name in dishes:
        dishes[name].print_item()
-
-    mineral = MineralScrape()
-    minerals = mineral.parse_items()
-    del minerals[""]
-
-    for name in minerals:
-       minerals[name].print_item()
 
 if __name__ == "__main__":
     main()

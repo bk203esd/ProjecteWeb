@@ -2,10 +2,6 @@ import re
 
 import urllib3
 import bs4
-import os, django
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projecteWeb.settings')
-django.setup()
 
 seasons = []
 

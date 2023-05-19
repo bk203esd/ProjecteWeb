@@ -4,7 +4,7 @@ import bs4
 final_locations = []
 
 
-class WebScrape(object):
+class ScrapLocation(object):
     def __init__(self) -> None:
         self.url = "https://stardewvalleywiki.com"
         self.data = None
@@ -42,6 +42,6 @@ class WebScrape(object):
 
 
 if __name__ == "__main__":
-    client = WebScrape()
+    client = ScrapLocation()
     dades = client.get_data()
     print(dades)

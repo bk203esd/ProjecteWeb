@@ -4,18 +4,18 @@ import re
 from stardewApp.models import Villager
 
 
-# class Villager():
-#     def __init__(self, name = "", birthday = "", love = [], like = []) -> None:
-#         self.name = name
-#         self.birthday = birthday
-#         self.love = love
-#         self.like = like
-#
-#     def print(self):
-#         print(f'Villager: {self.name}, \n\tBirthdate: {self.birthday}\n\tLoves: {self.love}\n\tLikes: {self.like}')
+class Villager():
+    def __init__(self, name="", birthday="", love=[], like=[]) -> None:
+        self.name = name
+        self.birthday = birthday
+        self.love = love
+        self.like = like
+
+    def print(self):
+        print(f'Villager: {self.name}, \n\tBirthdate: {self.birthday}\n\tLoves: {self.love}\n\tLikes: {self.like}')
 
 
-class WebScrape(object):
+class VillagerScrap(object):
     def __init__(self) -> None:
         self.url = "https://stardewvalleywiki.com"
 
@@ -60,8 +60,12 @@ class WebScrape(object):
         birthDate = div_main.find('a').get('title')
 
         self.data = {}
-        self.data['like'] = like
-        self.data['love'] = love
+        if len(like) == 0:
+            like.append(['Daffodil'])
+        self.data['like'] = like[0]
+        if len(love) == 0:
+            love.append(['Leek'])
+        self.data['love'] = love[0]
         self.data['birthday'] = birthDate
 
     def extract_data(self):
@@ -87,7 +91,7 @@ class WebScrape(object):
 
 
 def fill_dades(villager):
-    client = WebScrape()
+    client = VillagerScrap()
     dades = client.get_villager_data(villager)
     dbvillager = Villager.objects.create(
         name=villager,
