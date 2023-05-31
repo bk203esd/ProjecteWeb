@@ -67,24 +67,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="villager_name">Name:</label>
-                        <div class="form-control">{{ villager.name }}</div>
+                <span vocab = "https://schema.org" typeof="Person">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="villager_name">Name:</label>
+                            <div class="form-control" property="name">{{ villager.name }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="villager_birthday">Birthday:</label>
+                            <div class="form-control" property="birthDate">{{ villager.birthday }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="villager_loved_item">Loved Item:</label>
+                            <div class="form-control" property="seeks">{{ villager.loved_item }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="villager_liked_item">Liked Item:</label>
+                            <div class="form-control" property="seeks">{{ villager.liked_item }}</div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="villager_birthday">Birthday:</label>
-                        <div class="form-control">{{ villager.birthday }}</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="villager_loved_item">Loved Item:</label>
-                        <div class="form-control">{{ villager.loved_item }}</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="villager_liked_item">Liked Item:</label>
-                        <div class="form-control">{{ villager.liked_item }}</div>
-                    </div>
-                </div>
+                </span>
+
             </div>
         </div>
     {% endif %}

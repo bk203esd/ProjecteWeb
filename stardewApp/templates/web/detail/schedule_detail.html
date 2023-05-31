@@ -1,8 +1,11 @@
 {% extends "web/base.html" %}
 {% block content %}
-    <div>{{ schedule.day_of_weel }}</div>
-    <div>{{ schedule.hour }}</div>
-    <div>{{ schedule.season }}</div>
-    <div>{{ schedule.villager }}</div>
-    <div>{{ schedule.location }}</div>
+    <span vocab = "https://schema.org" typeof="Schedule">
+        <div property="byDay">{{ schedule.day_of_weel }}</div>
+        <div property="">{{ schedule.hour }}</div>
+        <div property="byMonth">{{ schedule.season }}</div>
+        <div property="">{{ schedule.villager }}</div>
+        <div property="">{{ schedule.location }}</div>
+    </span>
+
 {% endblock %}
