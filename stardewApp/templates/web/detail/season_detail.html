@@ -40,8 +40,11 @@
             <div class="card-body text-center">
                     {% csrf_token %}
                     <div class="form-group col-md-6 offset-md-3">
-                        <div for="season_name">Name</div>
-                        <div type="text" class="form-control">{{ season.name }}</div>
+                        <span vocab = "https://schema.org" typeof="Season">
+                            <div for="season_name">Name</div>
+                            <div type="text" class="form-control" property="name">{{ season.name }}</div>
+                        </span>
+
                     </div>
                     </div>
                 </div>

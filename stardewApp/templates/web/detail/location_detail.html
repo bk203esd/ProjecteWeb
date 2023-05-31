@@ -47,12 +47,15 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="location_name">Name:</label>
-                    <div class="form-control">{{ location.name }}</div>
-                </div>
-                <div class="form-group">
-                    <label for="location_area">Area:</label>
-                    <div class="form-control">{{ location.area }}</div>
+                    <span vocab = "https://schema.org" typeof="Place">
+                        <label for="location_name">Name:</label>
+                        <div class="form-control" property="name">{{ location.name }}</div>
+
+                        <div class="form-group">
+                            <label for="location_area">Area:</label>
+                            <div class="form-control" property="containedInPlace">{{ location.area }}</div>
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>

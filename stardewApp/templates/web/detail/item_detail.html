@@ -68,22 +68,24 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <label for="item_name">Name:</label>
-                    <div class="form-control">{{ item.name }}</div>
-                </div>
-                <div class="form-group">
-                    <label for="item_category">Category:</label>
-                    <div class="form-control">{{ item.category }}</div>
-                </div>
-                <div class="form-group">
-                    <label for="item_location">Location:</label>
-                    <div class="form-control">{{ item.location }}</div>
-                </div>
-                <div class="form-group">
-                    <label for="item_season">Season:</label>
-                    <div class="form-control">{{ item.season }}</div>
-                </div>
+                <span  vocab = "https://schema.org" typeof="FoodEvent">
+                    <div class="form-group">
+                        <label for="item_name">Name:</label>
+                        <div class="form-control" property="name">{{ item.name }}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="item_category">Category:</label>
+                        <div class="form-control" property="additionalType">{{ item.category }}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="item_location">Location:</label>
+                        <div class="form-control" property="location">{{ item.location }}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="item_season">Season:</label>
+                        <div class="form-control" property="duration">{{ item.season }}</div>
+                    </div>
+                </span>
             </div>
         </div>
     </div>
